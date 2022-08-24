@@ -26,7 +26,7 @@ public class CustomerController implements CustomerApi {
 
 	@Override
 	public ResponseEntity<List<Customer>> getAllCustomers() {
-		logger.info("getting all customer info");
+		logger.info("Getting all customer info");
 		try {
 			List<Customer> customers = customerService.findAllCustomer();
 			return ResponseEntity.of(Optional.of(customers));
@@ -41,7 +41,7 @@ public class CustomerController implements CustomerApi {
 
 	@Override
 	public ResponseEntity<Customer> getCustomerDetails(String customerId) {
-		logger.info("getting  customer info");
+		logger.info("Getting  customer info");
 		try {
 			Customer customer = customerService.findCustomerByCustomerId(customerId);
 			return ResponseEntity.of(Optional.of(customer));
@@ -50,7 +50,7 @@ public class CustomerController implements CustomerApi {
 			throw new BussinessException(new Date(), " Customer details not Found", customerId);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			throw new RuntimeException(" error in finding  Customer details");
+			throw new RuntimeException("Error in finding  Customer details");
 		}
 
 	}
@@ -63,13 +63,13 @@ public class CustomerController implements CustomerApi {
 				return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
 			} else {
-				logger.error("customer details not acceptable");
-				throw new BussinessException(new Date(), " customer details not acceptable",
+				logger.error("Customer details not acceptable");
+				throw new BussinessException(new Date(), "Customer details not acceptable",
 						customer.getCustomerName());
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			throw new BussinessException(new Date(), " customer details not acceptable", customer.getCustomerName());
+			throw new BussinessException(new Date(), "Customer details not acceptable", customer.getCustomerName());
 
 		}
 	}
@@ -82,7 +82,7 @@ public class CustomerController implements CustomerApi {
 				return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
 			} else {
-				logger.error(" can not update customer details not acceptable");
+				logger.error("Can not update customer details not acceptable");
 				throw new BussinessException(new Date(), " Customer details not Found", customer.getCustomerId());
 			}
 		} catch (Exception e) {
@@ -99,12 +99,12 @@ public class CustomerController implements CustomerApi {
 				return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
 			} else {
-				logger.error(" can not delete customer details not acceptable");
-				throw new BussinessException(new Date(), " Customer details not Found to delete", customerId);
+				logger.error("Can not delete customer details not acceptable");
+				throw new BussinessException(new Date(), "Customer details not Found to delete", customerId);
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			throw new BussinessException(new Date(), " Customer details not found to take action", customerId);
+			throw new BussinessException(new Date(), "Customer details not found to take action", customerId);
 		}
 	}
 
